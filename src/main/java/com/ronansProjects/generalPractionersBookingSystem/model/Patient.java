@@ -1,6 +1,7 @@
 package com.ronansProjects.generalPractionersBookingSystem.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
@@ -33,4 +34,6 @@ public class Patient {
         this.mobile = mobile;
         this.email = email;
     }
+
+    public Patient(){}
 }

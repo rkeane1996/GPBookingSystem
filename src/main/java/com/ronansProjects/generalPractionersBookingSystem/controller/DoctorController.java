@@ -1,12 +1,10 @@
 package com.ronansProjects.generalPractionersBookingSystem.controller;
 
-import com.ronansProjects.generalPractionersBookingSystem.model.Booking;
 import com.ronansProjects.generalPractionersBookingSystem.model.Doctor;
 import com.ronansProjects.generalPractionersBookingSystem.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

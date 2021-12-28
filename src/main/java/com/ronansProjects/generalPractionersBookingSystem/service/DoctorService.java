@@ -1,8 +1,7 @@
 package com.ronansProjects.generalPractionersBookingSystem.service;
 
-import com.ronansProjects.generalPractionersBookingSystem.model.Booking;
 import com.ronansProjects.generalPractionersBookingSystem.model.Doctor;
-import com.ronansProjects.generalPractionersBookingSystem.repository.BookingRepo;
+import com.ronansProjects.generalPractionersBookingSystem.repository.AppointmentRepo;
 import com.ronansProjects.generalPractionersBookingSystem.repository.DoctorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ public class DoctorService {
     private DoctorRepo doctorRepo;
 
     @Autowired
-    private BookingRepo bookingRepo;
+    private AppointmentRepo appointmentRepo;
 
     public Doctor saveDoctor(Doctor doctor) {
         return doctorRepo.save(doctor);
@@ -28,13 +27,13 @@ public class DoctorService {
     }
 
     public Doctor getDoctor(Integer docId) {
-        return doctorRepo.getById(docId);
+        return doctorRepo.findById(docId).get();
     }
 
     public List<Doctor> getAllAvailableDoctors(String time, String date) {
         List<Doctor> availableDocs = new ArrayList<>();
         List<Doctor> allDoc = getAllDoctors();
-        List<Integer> unavailableDoc = bookingRepo.findAvailableDoctors(date, time);
+        List<Integer> unavailableDoc = appointmentRepo.findAvailableDoctors(date, time);
         for (Doctor doc: allDoc){
             if(!unavailableDoc.contains(doc.getDoctorid())){
                 availableDocs.add(doc);
@@ -42,5 +41,4 @@ public class DoctorService {
         }
         return availableDocs;
     }
-
 }

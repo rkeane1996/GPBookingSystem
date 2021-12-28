@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/gp/user/")
@@ -21,6 +23,11 @@ public class PatientController {
     public Patient retrievePatient(@PathVariable Integer patientId) {
         return patientService.getPatientDetails(patientId);
     }
+
+    @GetMapping(value = "allPatients")
+    public List<Patient> getAllPatients(){
+        return patientService.getAllPatients();
+    }
     
     @PostMapping(value="createPatient")
     public Patient createPatient(@RequestBody Patient patient) {
@@ -31,6 +38,5 @@ public class PatientController {
     public Patient editPatient(@RequestBody Patient patient) {
         return patientService.editPatient(patient);
     }
-    
     
 }
